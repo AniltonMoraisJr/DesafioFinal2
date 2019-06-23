@@ -12,7 +12,6 @@ class ProductTypeSchema extends Schema {
         .references("id")
         .inTable("products");
       table.string("name").notNullable();
-      table.string("description").notNullable();
       table.decimal("price").notNullable();
       table.string("image");
       table.timestamps();

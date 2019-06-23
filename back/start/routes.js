@@ -21,3 +21,11 @@ Route.get("/", () => {
 });
 
 Route.post("/login", "SessionController.login");
+
+Route.resource("productions", "ProductController");
+
+Route.get("images/:type/:id", "ImageController.show");
+
+Route.resource("productions/:id/types", "ProductTypeController");
+
+Route.resource("productions/:id/sizes", "ProductSizeController");

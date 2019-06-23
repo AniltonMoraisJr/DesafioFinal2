@@ -1,9 +1,11 @@
-'use strict'
+"use strict";
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const Product = use("App/Models/Product");
+const Helpers = use("Helpers");
 /**
  * Resourceful controller for interacting with products
  */
@@ -17,8 +19,7 @@ class ProductController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
-  }
+  async index({ request, response, view }) {}
 
   /**
    * Render a form to be used for creating a new product.
@@ -29,8 +30,7 @@ class ProductController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create ({ request, response, view }) {
-  }
+  async create({ request, response, view }) {}
 
   /**
    * Create/save a new product.
@@ -40,7 +40,23 @@ class ProductController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store({ request, response }) {
+    const data = request.all();
+    if (request.file("image")) {
+      const upload = request.file("image", { size: "2mb" });
+
+      const fileName = `${Date.now()}.${upload.subtype}`;
+
+      await upload.move(Helpers.tmpPath("uploads/products"), {
+        name: fileName
+      });
+
+      if (!upload.moved()) return upload.error();
+      data.image = fileName;
+    }
+    const product = await Product.create(data);
+
+    return product;
   }
 
   /**
@@ -52,8 +68,7 @@ class ProductController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
-  }
+  async show({ params, request, response, view }) {}
 
   /**
    * Render a form to update an existing product.
@@ -64,8 +79,7 @@ class ProductController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit ({ params, request, response, view }) {
-  }
+  async edit({ params, request, response, view }) {}
 
   /**
    * Update product details.
@@ -75,8 +89,7 @@ class ProductController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
-  }
+  async update({ params, request, response }) {}
 
   /**
    * Delete a product with id.
@@ -86,8 +99,7 @@ class ProductController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
-  }
+  async destroy({ params, request, response }) {}
 }
 
-module.exports = ProductController
+module.exports = ProductController;

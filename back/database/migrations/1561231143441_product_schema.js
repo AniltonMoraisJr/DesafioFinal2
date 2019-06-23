@@ -8,6 +8,8 @@ class ProductSchema extends Schema {
     this.create("products", table => {
       table.increments();
       table.string("name").notNullable();
+      table.string("description");
+      table.decimal("evaluation");
       table.time("spent_time");
       table.string("image");
       table.timestamps();
