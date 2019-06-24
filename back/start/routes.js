@@ -22,10 +22,12 @@ Route.get("/", () => {
 
 Route.post("/login", "SessionController.login");
 
-Route.resource("productions", "ProductController");
+Route.resource("products", "ProductController");
 
 Route.get("images/:type/:id", "ImageController.show");
 
-Route.resource("productions/:id/types", "ProductTypeController");
+Route.resource("products/:id/types", "ProductTypeController");
 
-Route.resource("productions/:id/sizes", "ProductSizeController");
+Route.resource("products/:id/sizes", "ProductSizeController");
+
+Route.post("orders", "OrderController.store").middleware(["auth"]);

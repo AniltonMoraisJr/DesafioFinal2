@@ -3,14 +3,14 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use("Schema");
 
-class RequestItenSchema extends Schema {
+class OrderItenSchema extends Schema {
   up() {
-    this.create("request_itens", table => {
+    this.create("order_itens", table => {
       table.increments();
       table
-        .integer("request_id")
+        .integer("order_id")
         .references("id")
-        .inTable("requests");
+        .inTable("orders");
       table
         .integer("product_id")
         .references("id")
@@ -29,8 +29,8 @@ class RequestItenSchema extends Schema {
   }
 
   down() {
-    this.drop("request_itens");
+    this.drop("order_itens");
   }
 }
 
-module.exports = RequestItenSchema;
+module.exports = OrderItenSchema;

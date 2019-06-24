@@ -3,13 +3,13 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use("Model");
 
-class Request extends Model {
+class Order extends Model {
   user() {
     return this.belongsTo("App/Models/User");
   }
-  requestItens() {
-    return this.hasMany("App/Models/RequestIten");
+  itens() {
+    return this.hasMany("App/Models/OrderIten");
   }
 }
 
-module.exports = Request;
+module.exports = Order;

@@ -5,6 +5,7 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const ProductSize = use("App/Models/ProductSize");
+const Helpers = use("Helpers");
 
 /**
  * Resourceful controller for interacting with productsizes
@@ -40,8 +41,9 @@ class ProductSizeController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response }) {
+  async store({ params, request, response }) {
     const data = request.all();
+    data.product_id = params.id;
     if (request.file("image")) {
       const upload = request.file("image", { size: "2mb" });
 
