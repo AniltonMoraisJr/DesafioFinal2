@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
   }
 });
 
-class Main extends Component {
+class SignUp extends Component {
   handleOnPress = () => {
-    this.props.navigation.navigate("SignUp");
+    this.props.navigation.goBack();
   };
   render() {
     return (
@@ -43,6 +43,7 @@ class Main extends Component {
           style={styles.container}
         >
           <Image source={logo} style={styles.logo} />
+          <Input placeholder="Nome completo" placeholderTextColor="#999999" />
           <Input placeholder="Seu e-mail" placeholderTextColor="#999999" />
           <Input
             placeholder="Senha secreta"
@@ -51,12 +52,12 @@ class Main extends Component {
           />
           <CustomButton>
             <Text style={{ color: "#fff", fontSize: 15, fontWeight: "bold" }}>
-              Entrar
+              Criar conta
             </Text>
           </CustomButton>
           <Button
             color="#fff"
-            title="Criar conta gratuita"
+            title="Já tenho login"
             onPress={this.handleOnPress}
           />
         </LinearGradient>
@@ -65,4 +66,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default SignUp;
