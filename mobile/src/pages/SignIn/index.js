@@ -30,9 +30,12 @@ const styles = StyleSheet.create({
   }
 });
 
-class Main extends Component {
+class SignIn extends Component {
   handleOnPress = () => {
     this.props.navigation.navigate("SignUp");
+  };
+  handleLogin = () => {
+    this.props.navigation.navigate("Main");
   };
   render() {
     return (
@@ -49,7 +52,7 @@ class Main extends Component {
             placeholderTextColor="#999999"
             secureTextEntry
           />
-          <CustomButton>
+          <CustomButton onPress={this.handleLogin}>
             <Text style={{ color: "#fff", fontSize: 15, fontWeight: "bold" }}>
               Entrar
             </Text>
@@ -65,4 +68,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default SignIn;

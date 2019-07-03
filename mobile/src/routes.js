@@ -5,8 +5,10 @@ import {
 } from "react-navigation";
 import { Animated, Easing } from "react-native";
 
-import Main from "~/pages/Main";
+import SignIn from "~/pages/SignIn";
 import SignUp from "~/pages/SignUp";
+// import Admin from "~/pages/Admin";
+
 const transitionConfig = () => {
   return {
     transitionSpec: {
@@ -55,11 +57,16 @@ const transitionConfig = () => {
     }
   };
 };
+const LoginRoutes = createStackNavigator(
+  { SignIn, SignUp },
+  { initialRouteName: "SignIn", headerMode: "none", transitionConfig }
+);
+// const AdminRoutes = createStackNavigator(
+//   { Admin },
+//   { initialRouteName: "Admin", headerMode: "none", transitionConfig }
+// );
 const Routes = createAppContainer(
-  createStackNavigator(
-    { Main, SignUp },
-    { initialRouteName: "Main", headerMode: "none", transitionConfig }
-  )
+  createSwitchNavigator({ Login: LoginRoutes }, { initialRouteName: "Login" })
 );
 
 export default Routes;
